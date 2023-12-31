@@ -20,7 +20,69 @@
     <link rel="stylesheet" href="css/extra-style.css">
 </head>
 
-<body>
+<body class="bg-white">
+    <header class="sticky-top header-l-r">
+        <nav class="navbar">
+            <div class="container py-lg-2 py-sm-1 d-flex justify-content-between align-items-center flex-nowrap">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="Gaming.">
+                </a>
+                <div class="d-none">
+                </div>
+                <div>
+                    <a href="login.html"><button class="btn new-btn-transparent me-2">Login</button></a>
+                    <a href="register.html"><button class="btn new-btn-transparent">Register</button></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="login-form">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <a href="index.html" class="back-btn d-flex justify-content-center align-items-center flex-row mb-3">
+                <span class="circle-shape me-1"><i class="fa-solid fa-arrow-left-long"></i></span>
+                Back to Shop</a>
+            <h2 class="display-6 form-head">Log In</h2>
+        </div>
+        <div class="mt-3 px-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-12">
+                    <form class="form-style">
+                        <div class="form-container">
+                            <h5 class="m-0">Log In</h5>
+                        </div>
+                        <div class="form-container">
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6 col-12 px-2">
+                                    <label class="mb-2">E-mail:</label>
+                                    <input type="email" class="form-input d-block" placeholder="E-mail">
+                                </div>
+                                <div class="col-md-6 col-12 px-2">
+                                    <label class="mb-2">Password:</label>
+                                    <input type="password" class="form-input d-block" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="px-2">
+                                <label class="me-1">Remember Me</label>
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="form-container d-flex justify-content-center">
+                            <button type="submit" class="btn new-btn submit-btn">
+                                Login <i class="fa-solid fa-arrow-right-long ms-2"></i>
+                            </button>
+                        </div>
+                        <div class="form-container d-flex justify-content-center align-items-center flex-column">
+                            <p class="">If you dont have account</p>
+                            <button class="btn new-btn register-btn">
+                                Register <i class="fa-solid fa-arrow-right-long ms-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/login.js"></script>
 </body>
