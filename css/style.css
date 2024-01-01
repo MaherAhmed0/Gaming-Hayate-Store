@@ -325,3 +325,74 @@
     padding: 10px 40px;
     font-size: 14px;
 }
+
+/* ------------------------------ Footer ------------------------------ */
+.footer {
+    padding-top: 50px;
+}
+
+.grad-text {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer h4 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.footer ul li:hover {
+    letter-spacing: 1px;
+}
+
+.footer ul li:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+.arr-icon {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 12px;
+}
+
+.social-icons li:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+.social-icons a {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    transition: all .3s ease-in-out;
+}
+
+.social-icons a:hover {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    color: white;
+}
+
+.link-git {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
