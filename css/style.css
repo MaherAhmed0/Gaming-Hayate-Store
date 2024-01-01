@@ -252,6 +252,74 @@
     }
 }
 
+/* ------------------------------ Newsletter ------------------------------ */
+@media (max-width: 767px) {
+    .news-letter {
+        flex-direction: column-reverse;
+    }
+}
+
+.subscribe-span {
+    background: linear-gradient(90deg, var(--blue) 0%, var(--second-color) 100%);
+    opacity: 62%;
+    padding: 3px 10px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.news-letter b {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.news-letter p {
+    color: var(--theme-color);
+}
+
+@media screen and (max-width: 575px) {
+    .news-input {
+        padding: 14.5px 100px 14.5px 15px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 991px) {
+    .news-input {
+        padding: 13px 100px 13px 20px;
+    }
+}
+
+.news-input {
+    padding: 13px 155px 13px 20px;
+    border: 1px solid black;
+    color: var(--theme-color);
+    width: 100%;
+    outline: none;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+    border-radius: 0 20px;
+}
+
+@media (max-width: 991px) {
+    .news-btn {
+        padding: 14px 20px !important;
+    }
+}
+
+.news-btn {
+    border-radius: 0 15px 0 0;
+    color: white;
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    font-size: 13px;
+    height: 100%;
+    border: 0;
+    padding: 14px 45px;
+}
+
 /* ------------------------------ Login & Register ------------------------------ */
 .login-register-form {
     padding: 70px 0;
