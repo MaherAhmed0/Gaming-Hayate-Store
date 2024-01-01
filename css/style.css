@@ -253,12 +253,12 @@
 }
 
 /* ------------------------------ Login & Register ------------------------------ */
-.login-form {
+.login-register-form {
     padding: 70px 0;
 }
 
 @media (max-width: 767px) {
-    .login-form {
+    .login-register-form {
         padding: 40px 0;
     }
 }
@@ -295,7 +295,7 @@
 }
 
 .form-container h5 {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .form-input {
