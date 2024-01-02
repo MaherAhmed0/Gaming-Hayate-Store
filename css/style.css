@@ -252,6 +252,43 @@
     }
 }
 
+/* ------------------------------ About ------------------------------ */
+.about p {
+    color: var(--theme-color);
+}
+
+.about-item {
+    position: relative;
+    z-index: 1;
+    padding: 25px 15px;
+}
+
+.about-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    border: 1px solid var(--second-color);
+    background: linear-gradient(148deg, rgba(1, 152, 255, .18) 0%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 0 15px;
+}
+
+.about-item h3 {
+    background: linear-gradient(to bottom, var(--blue) 4.45%, var(--second-color) 93.88%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.about-item p {
+    max-width: 195px;
+}
+
 /* ------------------------------ Newsletter ------------------------------ */
 @media (max-width: 767px) {
     .news-letter {
