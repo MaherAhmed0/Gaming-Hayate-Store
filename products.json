@@ -1,0 +1,161 @@
+[
+    {
+        "id": 1,
+        "name": "Alienware Gameing Monitor T 45",
+        "description": "Exceptional Full HD IPS 21.5 Inch Ultra Thin Display : Enjoy immaculate image quality with 1920x1080 resolution and 178 degree wide viewing angles I Zero Frame Design.Connectivity Ports includes 1 x VGA Port, 1 x HDMI, 1 Audio-In Port, with Inbox HDMI and VGA Cable",
+        "category": "Monitor",
+        "new": true,
+        "versions": [
+            {
+                "size": 21.5,
+                "price": 560.00,
+                "prevPrice": 800.00,
+                "image": ""
+            },
+            {
+                "size": 25.5,
+                "price": 750.00,
+                "prevPrice": 800.00,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Alien ware Monitor T 46",
+        "description": "Exceptional Full HD IPS 21.5 Inch Ultra Thin Display : Enjoy immaculate image quality with 1920x1080 resolution and 178 degree wide viewing angles I Zero Frame Design.Connectivity Ports includes 1 x VGA Port, 1 x HDMI, 1 Audio-In Port, with Inbox HDMI and VGA Cable abc",
+        "category": "Monitor",
+        "new": false,
+        "versions": [
+            {
+                "size": 32,
+                "price": 850.00,
+                "prevPrice": 0,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Cloud Alpha Gaming Headset",
+        "description": "HyperX Dual Chamber Drivers for more distinction and less distortion. Signature Award-Winning HyperX comfort. Durable aluminum frame with an expanded headband. Detachable braided cable with convenient in-line audio control. Detachable noise cancellation microphone.",
+        "category": "Headset",
+        "new": false,
+        "versions": [
+            {
+                "color": "Black",
+                "price": 530.00,
+                "prevPrice": 600.00,
+                "image": ""
+            },
+            {
+                "color": "Red",
+                "price": 500.00,
+                "prevPrice": 600.00,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "VR Headset with Headphones",
+        "description": "40MM HD optical resin lens with Focal and IPD adjustments with FOV up to 110 provides best VR Experience.Best-in-class headphones With 3.5mm Jack and removable front panel for ventilation gives best vr experience with the VR Headset",
+        "category": "Headset",
+        "new": true,
+        "versions": [
+            {
+                "color": "White",
+                "price": 860.00,
+                "prevPrice": 900.00,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Kepler Brooks Gaming Chair",
+        "description": "Premium Material: PU Leather Upholstery made with High density foam and added seat cushion, more comfort and long-time use; High Tensile steel frame, more sturdy and stable; lumbar & headrest pillows offer added support and comfort. Heavy-duty base and nylon smooth-rolling casters for super stability and mobility.",
+        "category": "Chair",
+        "new": false,
+        "versions": [
+            {
+                "size": "52D x 66W x 131H",
+                "price": 800.00,
+                "prevPrice": 0,
+                "image": ""
+            },
+            {
+                "size": "50D x 65W x 130H",
+                "price": 720.00,
+                "prevPrice": 0,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Colossus Ergonomic Gaming Office Chair",
+        "description": "ERGONOMICALLY DESIGNED FOR HARDCORE GAMING : From its unique contours and angled seat edges, to its fully adjustable recline, tilt, and height, the Dr Luxur Colossus supports a healthy sitting posture so you can game for hours in comfor",
+        "category": "Chair",
+        "new": false,
+        "versions": [
+            {
+                "color": "White",
+                "price": 356.00,
+                "prevPrice": 500.00,
+                "image": ""
+            },
+            {
+                "size": "Green",
+                "price": 240.00,
+                "prevPrice": 500.00,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Gaming Chair for Gamers with Lumbar",
+        "description": "Have back issues or don’t want to develop them? This adjustable office chair includes Cushion Foam Padded support and a recline feature that allows you to tilt the backrest back or sit straight. Now you can quickly find a position that makes your back feel the most comfortable!",
+        "category": "Chair",
+        "new": true,
+        "versions": [
+            {
+                "color": "Blue",
+                "price": 560.00,
+                "prevPrice": 700.00,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Raptor Gameing Z95",
+        "description": "Multiple connectivity options including HDMI, USB ports & RGB fans let you connect a variety of peripherals easily. Wi-Fi Ready – Connect to the internet wirelessly with ease. Preloaded with Windows 10 64-bit OS for enhanced productivity and multitasking.",
+        "category": "Game PCs",
+        "new": false,
+        "versions": [
+            {
+                "size": 364,
+                "price": 896.00,
+                "prevPrice": 999.99,
+                "image": ""
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Electrobot Xtreme Gaming Series PC",
+        "description": "Multiple connectivity options including HDMI, USB ports & RGB fans let you connect a variety of peripherals easily. Wi-Fi Ready – Connect to the internet wirelessly with ease. Preloaded with Windows 10 64-bit OS for enhanced productivity and multitasking.",
+        "category": "Game PCs",
+        "new": false,
+        "versions": [
+            {
+                "size": 128,
+                "price": 468.00,
+                "prevPrice": 600.00,
+                "image": ""
+            }
+        ]
+    }
+]

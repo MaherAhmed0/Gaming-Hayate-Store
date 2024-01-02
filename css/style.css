@@ -289,6 +289,34 @@
     max-width: 195px;
 }
 
+/* ------------------------------ Shop ------------------------------ */
+.shop b {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shop h2 {
+    max-width: 320px;
+}
+
+.section-p {
+    color: var(--theme-color);
+    max-width: 440px;
+}
+
+@media (max-width: 991px) {
+    .section-p {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .section-p {
+        max-width: 395px;
+    }
+}
+
 /* ------------------------------ Newsletter ------------------------------ */
 @media (max-width: 767px) {
     .news-letter {
