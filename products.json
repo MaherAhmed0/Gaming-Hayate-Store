@@ -10,13 +10,13 @@
                 "size": 21.5,
                 "price": 560.00,
                 "prevPrice": 800.00,
-                "image": ""
+                "image": "images/T-45-21.webp"
             },
             {
                 "size": 25.5,
                 "price": 750.00,
                 "prevPrice": 800.00,
-                "image": ""
+                "image": "images/T-45-25.webp"
             }
         ]
     },
@@ -31,7 +31,7 @@
                 "size": 32,
                 "price": 850.00,
                 "prevPrice": 0,
-                "image": ""
+                "image": "images/T-46.webp"
             }
         ]
     },
@@ -46,13 +46,13 @@
                 "color": "Black",
                 "price": 530.00,
                 "prevPrice": 600.00,
-                "image": ""
+                "image": "images/alpha-black.webp"
             },
             {
                 "color": "Red",
                 "price": 500.00,
                 "prevPrice": 600.00,
-                "image": ""
+                "image": "images/alpha-red.webp"
             }
         ]
     },
@@ -67,7 +67,7 @@
                 "color": "White",
                 "price": 860.00,
                 "prevPrice": 900.00,
-                "image": ""
+                "image": "images/vr-white.webp"
             }
         ]
     },
@@ -82,13 +82,13 @@
                 "size": "52D x 66W x 131H",
                 "price": 800.00,
                 "prevPrice": 0,
-                "image": ""
+                "image": "images/kepler-52.webp"
             },
             {
                 "size": "50D x 65W x 130H",
                 "price": 720.00,
                 "prevPrice": 0,
-                "image": ""
+                "image": "images/kepler-50.webp"
             }
         ]
     },
@@ -103,13 +103,13 @@
                 "color": "White",
                 "price": 356.00,
                 "prevPrice": 500.00,
-                "image": ""
+                "image": "images/colossus-white.webp"
             },
             {
                 "size": "Green",
                 "price": 240.00,
                 "prevPrice": 500.00,
-                "image": ""
+                "image": "images/colossus-green.webp"
             }
         ]
     },
@@ -124,7 +124,7 @@
                 "color": "Blue",
                 "price": 560.00,
                 "prevPrice": 700.00,
-                "image": ""
+                "image": "images/lumbar-blue.webp"
             }
         ]
     },
@@ -139,7 +139,7 @@
                 "size": 364,
                 "price": 896.00,
                 "prevPrice": 999.99,
-                "image": ""
+                "image": "images/raptor-364.webp"
             }
         ]
     },
@@ -154,7 +154,7 @@
                 "size": 128,
                 "price": 468.00,
                 "prevPrice": 600.00,
-                "image": ""
+                "image": "images/xtreme-128.webp"
             }
         ]
     }
