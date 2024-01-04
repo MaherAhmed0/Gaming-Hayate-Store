@@ -6,7 +6,6 @@ let loginBtn = document.getElementById('loginBtn')
 loginBtn.addEventListener("click", (event) => {
     event.preventDefault()
     let matchedAccount = accounts.find(account => account.email === email.value && account.password === password.value);
-    console.log(matchedAccount)
     if (matchedAccount) {
         setTimeout(() => {
             window.location = "home.html";
