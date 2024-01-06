@@ -1,6 +1,6 @@
 let headerComponent = `
         <nav class="navbar">
-            <div class="container py-lg-2 py-sm-1 d-flex justify-content-between align-items-center flex-nowrap">
+            <div class="container py-lg-1 py-sm-1 d-flex justify-content-between align-items-center flex-nowrap">
                 <a class="navbar-brand" href="index.html">
                     <img src="images/logo.png" alt="Gaming.">
                 </a>

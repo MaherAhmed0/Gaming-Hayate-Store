@@ -1,3 +1,13 @@
+let header = document.getElementById("indexHeader");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     let button1 = document.getElementById('btn1');
     let button2 = document.getElementById('btn2');
