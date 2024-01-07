@@ -144,12 +144,17 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
                 let productCard = document.createElement('div');
                 productCard.className = 'col-xl-3 col-lg-4 col-md-6 col-12';
                 productCard.innerHTML = `
-                    <div class="product-card">
+                    <div class="product-card position-relative">
+                        <div class="d-flex justify-content-center align-items-center like-btn-cont z-3">
+                            <button class="like-btn btn">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
                         <h4>${bestSeller.name}</h4>
                         <p class="product-category">category: <span>${bestSeller.category}</span></p>
                         <div class="position-relative">
                         ${bestSeller.new ? `<span class="product-state position-absolute top-0 start-0">New</span>` : ''}
-                        <img src="${bestSeller.versions[0].image}" alt="" class="img-fluid product-img">
+                        <img src="${bestSeller.versions[0].image}" alt="" class="img-fluid product-img z-2">
                         </div>
                         <p class="version text-black mb-1">
                             ${bestSeller.versions[0].size ? 'Size:' : ''}

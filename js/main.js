@@ -20,4 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     button1.addEventListener('click', toLogin);
     button2.addEventListener('click', toLogin);
     button3.addEventListener('click', toLogin);
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('add-cart-btn') || event.target.classList.contains('like-btn')) {
+            toLogin();
+        }
+    });
 });

@@ -180,6 +180,11 @@
     border-radius: 5px;
 }
 
+#welcomeUser {
+    margin-bottom: -1px;
+    font-weight: 600;
+}
+
 /* ------------------------------ Main ------------------------------ */
 .banner {
     background-color: #12103e;
@@ -387,6 +392,35 @@
     background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
+}
+
+.like-btn-cont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .3s;
+}
+
+.product-card:hover .like-btn-cont {
+    opacity: 1;
+}
+
+.like-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: white;
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    border-radius: 0 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.like-btn:hover {
+    color: red;
 }
 
 .product-card h4 {
