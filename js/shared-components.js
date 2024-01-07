@@ -128,39 +128,39 @@ let footerComponent = `
                     class="link-git" href="https://github.com/MaherAhmed0" target="_blank">MaherAhmed0</a></p>
         </div>`
 
-let productsContainer = document.getElementById("bestSellers")
-fetch('products.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        let bestSellers = data.filter(item => item.bestSellers === true);
-        bestSellers.forEach((bestSeller, index) => {
-            let productCard = document.createElement('div');
-            productCard.className = 'col-xl-3 col-lg-4 col-md-6 col-12';
-            productCard.innerHTML = `
+const currentPage = window.location.pathname;
+if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
+    let productsContainer = document.getElementById("bestSellers")
+    fetch('products.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let bestSellers = data.filter(item => item.bestSellers === true);
+            bestSellers.forEach((bestSeller, index) => {
+                let productCard = document.createElement('div');
+                productCard.className = 'col-xl-3 col-lg-4 col-md-6 col-12';
+                productCard.innerHTML = `
                     <div class="product-card">
                         <h4>${bestSeller.name}</h4>
                         <p class="product-category">category: <span>${bestSeller.category}</span></p>
                         <div class="position-relative">
                         ${bestSeller.new ? `<span class="product-state position-absolute top-0 start-0">New</span>` : ''}
-                        <img src="${bestSeller.versions[0].image}" alt="" class="img-fluid">
+                        <img src="${bestSeller.versions[0].image}" alt="" class="img-fluid product-img">
                         </div>
                         <p class="version text-black mb-1">
                             ${bestSeller.versions[0].size ? 'Size:' : ''}
                             ${bestSeller.versions[0].color ? 'Color:' : ''}
                         </p>
                         <select class="select-styles">
-                            <option value="${bestSeller.versions[0].size || bestSeller.versions[0].color}">
-                                ${bestSeller.versions[0].size || bestSeller.versions[0].color}
-                            </option>
-                            ${bestSeller.versions[1] ? `
-                            <option value="${bestSeller.versions[1].size || bestSeller.versions[1].color}">
-                                ${bestSeller.versions[1].size || bestSeller.versions[1].color}
-                            </option> ` : ''}
+                            ${bestSeller.versions.map(version => `
+                                <option value="${version.size || version.color}">
+                                    ${version.size || version.color}
+                                </option>
+                            `).join('')}
                         </select>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -170,15 +170,31 @@ fetch('products.json')
                             <button class="btn new-btn z-3 add-cart-btn">Add to Cart</button>
                         </div>
                     </div>`;
-            if (index === bestSellers.length - 1) {
-                productCard.classList.add('last-product-card');
-            }
-            productsContainer.appendChild(productCard)
+                let selectStyles = productCard.querySelector('.select-styles');
+                selectStyles.addEventListener('change', function () {
+                    let selectedOption = this.value;
+                    let selectedVersion = bestSeller.versions.find(version => {
+                        return (version.size && version.size.toString() === selectedOption) || (version.color && version.color === selectedOption);
+                    });
+                    let imgElement = productCard.querySelector('.product-img');
+                    let priceElement = productCard.querySelector('.price');
+                    let prvPriceElement = productCard.querySelector('.prv-price');
+                    if (selectedVersion) {
+                        imgElement.src = selectedVersion.image;
+                        priceElement.innerHTML = `${selectedVersion.price.toFixed(2)}<span>$</span>`;
+                        prvPriceElement.innerHTML = `${selectedVersion.prevPrice.toFixed(2)}<span>$</span>`;
+                    }
+                });
+                if (index === bestSellers.length - 1) {
+                    productCard.classList.add('last-product-card');
+                }
+                productsContainer.appendChild(productCard)
+            })
         })
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     function insertElement(componentId, component) {
