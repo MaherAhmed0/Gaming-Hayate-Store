@@ -225,4 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
     insertElement("homeAbout", aboutComponent)
     insertElement("homeNewsletter", newsletterComponent)
     insertElement("homeFooter", footerComponent);
+
+    insertElement("storeFooter", footerComponent);
 })
