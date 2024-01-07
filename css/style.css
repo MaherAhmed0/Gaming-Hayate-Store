@@ -333,13 +333,13 @@
 }
 
 /* ------------------------------ Shop ------------------------------ */
-.shop b {
+.best-sellers b {
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.shop h2 {
+.best-sellers h2 {
     max-width: 320px;
 }
 
@@ -358,6 +358,110 @@
     .section-p {
         max-width: 395px;
     }
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .last-product-card {
+        display: none;
+    }
+}
+
+.best-sellers .product-card {
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(148deg, rgba(1, 152, 255, .18) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: all ease-in-out .5s;
+    border-radius: 0 12px;
+}
+
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* z-index: -1; */
+    height: 100%;
+    border-radius: 0 12px;
+    border: 1px solid transparent;
+    background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
+    mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
+    mask-composite: exclude;
+}
+
+.product-card h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.product-card .product-category {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--theme-color);
+    font-weight: 500;
+}
+
+.product-card .product-state {
+    padding: 3px 10px;
+    color: white;
+    font-size: 14px;
+    background: linear-gradient(to right, var(--blue) 0%, rgba(0, 152, 255, 0) 130%);
+    border-radius: 5px;
+}
+
+.version {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.select-styles {
+    width: 100%;
+    padding: 10px;
+    border: solid 1px var(--theme-color);
+    border-radius: 0 10px;
+    outline: none;
+    background-color: transparent;
+    color: var(--theme-color);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: -8px;
+}
+
+.prv-price {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: .6;
+}
+
+.price span,
+.prv-price span {
+    font-size: 11px;
+}
+
+@media (max-width: 575px) {
+    .add-cart-btn {
+        padding: 8px 31px !important;
+    }
+}
+
+.add-cart-btn {
+    font-size: 14px;
+    padding: 7px 30px;
+    border-radius: 0 10px !important;
 }
 
 /* ------------------------------ Newsletter ------------------------------ */

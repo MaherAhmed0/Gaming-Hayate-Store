@@ -128,11 +128,63 @@ let footerComponent = `
                     class="link-git" href="https://github.com/MaherAhmed0" target="_blank">MaherAhmed0</a></p>
         </div>`
 
+let productsContainer = document.getElementById("bestSellers")
+fetch('products.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        let bestSellers = data.filter(item => item.bestSellers === true);
+        bestSellers.forEach((bestSeller, index) => {
+            let productCard = document.createElement('div');
+            productCard.className = 'col-xl-3 col-lg-4 col-md-6 col-12';
+            productCard.innerHTML = `
+                    <div class="product-card">
+                        <h4>${bestSeller.name}</h4>
+                        <p class="product-category">category: <span>${bestSeller.category}</span></p>
+                        <div class="position-relative">
+                        ${bestSeller.new ? `<span class="product-state position-absolute top-0 start-0">New</span>` : ''}
+                        <img src="${bestSeller.versions[0].image}" alt="" class="img-fluid">
+                        </div>
+                        <p class="version text-black mb-1">
+                            ${bestSeller.versions[0].size ? 'Size:' : ''}
+                            ${bestSeller.versions[0].color ? 'Color:' : ''}
+                        </p>
+                        <select class="select-styles">
+                            <option value="${bestSeller.versions[0].size || bestSeller.versions[0].color}">
+                                ${bestSeller.versions[0].size || bestSeller.versions[0].color}
+                            </option>
+                            ${bestSeller.versions[1] ? `
+                            <option value="${bestSeller.versions[1].size || bestSeller.versions[1].color}">
+                                ${bestSeller.versions[1].size || bestSeller.versions[1].color}
+                            </option> ` : ''}
+                        </select>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="price">${bestSeller.versions[0].price.toFixed(2)}<span>$</span></p>
+                                <del class="prv-price">${bestSeller.versions[0].prevPrice.toFixed(2)}<span>$</span></del>
+                            </div>
+                            <button class="btn new-btn z-3 add-cart-btn">Add to Cart</button>
+                        </div>
+                    </div>`;
+            if (index === bestSellers.length - 1) {
+                productCard.classList.add('last-product-card');
+            }
+            productsContainer.appendChild(productCard)
+        })
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
 document.addEventListener('DOMContentLoaded', function () {
     function insertElement(componentId, component) {
         let Element = document.getElementById(componentId);
         if (Element) {
-            Element.insertAdjacentHTML('beforeend', component);
+            Element.insertAdjacentHTML('afterbegin', component);
         }
     }
 
