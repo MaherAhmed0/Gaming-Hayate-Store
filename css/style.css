@@ -152,6 +152,25 @@
     background: linear-gradient(to left, #0098FF 50%, #7C34C8);
 }
 
+.header-cart {
+    background-color: transparent;
+    border: none;
+}
+
+.offcanvas-header {
+    background-color: var(--blue);
+    color: white;
+}
+
+#cartItems {
+    padding: 1rem;
+}
+
+#cartFooter {
+    padding: 1rem;
+    border-top: 1px solid var(--theme-color);
+}
+
 .cart-lable {
     font-weight: 600;
     font-size: 13px;
