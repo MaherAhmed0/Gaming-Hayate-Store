@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Gaming Hayate</title>
+    <title>Products - Gaming Hayate</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Fonts -->
@@ -52,12 +52,44 @@
     <!-- ----------------------------------------------------------------------------------------------------- -->
     <!-- Main -->
     <main class="py-5" id="storeMain">
-        <!-- Main will be dynamically added here -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-12">
+                    <a href="home.html" class="back-btn d-flex justify-content-start align-items-center flex-row mb-4"
+                        style="color: white;">
+                        <span class="circle-shape me-2">
+                            <i class="fa-solid fa-arrow-left-long"></i>
+                        </span>
+                        Back to Home</a>
+                    <h2 class="section-title display-4">Store</h2>
+                    <p class="text-white">Welcome to our virtual emporium, where innovation meets immersion. At our
+                        store, we're not just selling products; we're offering a gateway to a new dimension of tech
+                        sophistication.</p>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- ----------------------------------------------------------------------------------------------------- -->
-    <!-- Footer -->
+    <!-- Store -->
     <section class="py-5 bg-white" id="storeSection">
-        <!-- Store will be dynamically added here -->
+        <div class="container">
+            <h5 class="text-black">Filters</h5>
+            <div class="row g-3 mb-4">
+                <div class="col-lg-6 col-12">
+                    <select id="searchSelect" class="select-styles ss w-100">
+                        <option value="name">Search by Name</option>
+                        <option value="category">Search by Category</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <input id="searchBar" type="text" class="w-100 search-input" placeholder=" Search...">
+                </div>
+            </div>
+            <h5 class="text-black">Products</h5>
+            <div class="row g-4" id="products">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
     </section>
     <!-- ----------------------------------------------------------------------------------------------------- -->
     <!-- Footer -->

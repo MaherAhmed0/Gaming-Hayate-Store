@@ -371,7 +371,7 @@
     }
 }
 
-.best-sellers .product-card {
+.product-card {
     position: relative;
     padding: 15px;
     background: linear-gradient(148deg, rgba(1, 152, 255, .18) 0%, rgba(0, 0, 0, 0) 100%);
@@ -638,6 +638,30 @@
 .register-btn {
     padding: 10px 40px;
     font-size: 14px;
+}
+
+/* ------------------------------ Store ------------------------------ */
+.section-title {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 30%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+#storeSection .ss {
+    margin-bottom: 0;
+    height: 42px;
+}
+
+#storeSection .search-input {
+    padding: 10px;
+    border: 1px solid var(--theme-color);
+    color: var(--theme-color);
+    outline: none;
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    border-radius: 0 10px;
+    height: 42px;
 }
 
 /* ------------------------------ Footer ------------------------------ */
