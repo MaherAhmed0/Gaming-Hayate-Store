@@ -201,14 +201,14 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
         });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    function insertElement(componentId, component) {
-        let Element = document.getElementById(componentId);
-        if (Element) {
-            Element.insertAdjacentHTML('afterbegin', component);
-        }
+let insertElement = (componentId, component) => {
+    let Element = document.getElementById(componentId);
+    if (Element) {
+        Element.insertAdjacentHTML('afterbegin', component);
     }
+}
 
+document.addEventListener('DOMContentLoaded', function () {
     insertElement("indexHeader", headerComponent);
     insertElement("indexMain", mainComponent);
     insertElement("indexAbout", aboutComponent)
