@@ -14,7 +14,7 @@
                 "prevPrice": 800.00,
                 "image": "images/T-45-21.webp"
             },
-            {   
+            {
                 "id": 1,
                 "size": 25.5,
                 "price": 750.00,
@@ -54,7 +54,7 @@
                 "prevPrice": 600.00,
                 "image": "images/alpha-black.webp"
             },
-            {   
+            {
                 "id": 1,
                 "color": "Red",
                 "price": 500.00,
@@ -94,7 +94,7 @@
                 "prevPrice": 0,
                 "image": "images/kepler-52.webp"
             },
-            {   
+            {
                 "id": 1,
                 "size": "50D x 65W x 130H",
                 "price": 720.00,
@@ -118,7 +118,7 @@
                 "prevPrice": 500.00,
                 "image": "images/colossus-white.webp"
             },
-            {   
+            {
                 "id": 1,
                 "size": "Green",
                 "price": 240.00,
@@ -172,6 +172,72 @@
                 "price": 468.00,
                 "prevPrice": 600.00,
                 "image": "images/xtreme-128.webp"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "G-Series Curved VA Monitor",
+        "description": "Lenovo Smart Artery Software: Self-learning software auto-adjusts display | Crosshair feature for FPS games | View Frame Rate and Timer | Create customized gaming modes.Eyesafe Certified Display | TUV Low Blue Light (Hardware solution) | TUV Rheinland Eye Comfort",
+        "category": "Monitor",
+        "new": true,
+        "bestSellers": false,
+        "versions": [
+            {
+                "color": "Grey",
+                "price": 453.00,
+                "prevPrice": 600.00,
+                "image": "images/g-series-grey.webp"
+            },
+            {
+                "color": "Blue",
+                "price": 563.00,
+                "prevPrice": 600.00,
+                "image": "images/g-series-blue.webp"
+            },
+            {
+                "color": "Black",
+                "price": 580.00,
+                "prevPrice": 600.00,
+                "image": "images/g-series-black.webp"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Radeon RX 680 GTS Graphics Card",
+        "description": "Microsoft Windows 10 and Microsoft DirectX 12 supported Video Memory: 8GB DDR5. The XFX Radeon RX 580 Series graphics card coupled with AMD LiquidVR technology delivers a virtually stutter-free, low latency experience, essential for remarkable virtual reality environments.",
+        "category": "Card",
+        "new": false,
+        "bestSellers": false,
+        "versions": [
+            {
+                "color": "Black",
+                "price": 356.00,
+                "prevPrice": 500.00,
+                "image": "images/redon-black.webp"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Radeon™ RX 750 XT SPEEDSTER MERC",
+        "description": "Microsoft Windows 10 and Microsoft DirectX 12 supported Video Memory: 8GB DDR5. The XFX Radeon RX 580 Series graphics card coupled with AMD LiquidVR technology delivers a virtually stutter-free, low latency experience, essential for remarkable virtual reality environments.",
+        "category": "Card",
+        "new": true,
+        "bestSellers": false,
+        "versions": [
+            {
+                "color": "Black",
+                "price": 940.00,
+                "prevPrice": 960.00,
+                "image": "images/redon-7-black.webp"
+            },
+            {
+                "color": "White",
+                "price": 900.00,
+                "prevPrice": 960.00,
+                "image": "images/redon-7-white.webp"
             }
         ]
     }
