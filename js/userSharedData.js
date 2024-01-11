@@ -79,11 +79,60 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('click', (event) => {
+    let cartNotificationContainer = document.querySelector('.cart-notification');
+    let productCard = event.target.closest('.product-card');
     if (event.target.matches('.add-cart-btn')) {
-        console.log("I'm working!!!!");
-        let cartNotificationContainer = document.querySelector('.cart-notification')
+        let productName = productCard.querySelector('h4').innerText;
+        let productImg = productCard.querySelector('.product-img').src;
+        let productVersion = productCard.querySelector('.select-styles').value;
+        if (cartNotificationContainer.classList.contains('cart-notification-expanded')) {
+            cartNotificationContainer.classList.remove('cart-notification-expanded');
+            setTimeout(() => {
+                cartNotificationContainer.classList.add('cart-notification-expanded');
+                cartNotificationContainer.innerHTML = `
+                    <div class="">
+                        <div class="cart-notification-header">
+                            <i class="fa-solid fa-check me-2"></i>
+                            <span>Item added to your cart</span>
+                        </div>
+                        <div class="cart-notification-product">
+                            <img src="${productImg}" alt="Product Image" class="img-fluid"/>
+                            <div>
+                                <h5 class="p-name">${productName}</h5>
+                                <p class="p-version">Version: ${productVersion}</p>
+                            </div>
+                        </div>
+                        <div class="cart-notification-footer">
+                            <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
+                            <button class="btn new-btn-transparent w-100">Continue shopping</button>
+                        </div>
+                    </div>`;
+            }, 100)
+        }
+        else {
+            cartNotificationContainer.classList.add('cart-notification-expanded');
+            cartNotificationContainer.innerHTML = `
+                    <div class="">
+                        <div class="cart-notification-header">
+                            <i class="fa-solid fa-check me-2"></i>
+                            <span>Item added to your cart</span>
+                        </div>
+                        <div class="cart-notification-product">
+                            <img src="${productImg}" alt="Product Image" class="img-fluid"/>
+                            <div>
+                                <h5 class="p-name">${productName}</h5>
+                                <p class="p-version">Version: ${productVersion}</p>
+                            </div>
+                        </div>
+                        <div class="cart-notification-footer">
+                            <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
+                            <button class="btn new-btn-transparent w-100">Continue shopping</button>
+                        </div>
+                    </div>`;
+        }
+    }
+    else if (!cartNotificationContainer.contains(event.target)
+        && cartNotificationContainer.classList.contains('cart-notification-expanded')) {
+        cartNotificationContainer.classList.remove('cart-notification-expanded');
     }
 });
-
-
-
