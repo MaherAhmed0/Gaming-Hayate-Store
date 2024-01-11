@@ -78,4 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+document.addEventListener('click', (event) => {
+    if (event.target.matches('.add-cart-btn')) {
+        console.log("I'm working!!!!");
+        let cartNotificationContainer = document.querySelector('.cart-notification')
+    }
+});
+
+
 
