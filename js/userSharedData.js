@@ -1,3 +1,8 @@
+let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+let loggedInEmail = localStorage.getItem("loggedInEmail");
+
+let loggedInAccount = accounts.find(account => account.email === loggedInEmail);
+
 let userPagesHeader = `
         <nav class="navbar">
             <div class="container py-lg-1 py-sm-1 d-flex justify-content-between align-items-center flex-nowrap">
@@ -48,6 +53,42 @@ let userPagesHeader = `
             </div>
         </nav>`
 
+let createCartItem = (productImg, productName, version, price, quantity) => {
+    return {
+        productImg,
+        productName,
+        version,
+        price,
+        quantity,
+        totalPrice: price * quantity
+    };
+}
+
+let addItemToCart = (item) => {
+    let cartItem = createCartItem(item.productImg, item.productName, item.version, item.price, item.quantity);
+    addItem(loggedInAccount.cart, cartItem);
+}
+
+let addItem = (cart, item) => {
+    cart.items.push(item);
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+}
+
+let continueShopping = () => {
+    document.querySelector('#continueShopping').addEventListener('click', () => {
+        let cartNotificationContainer = document.querySelector('.cart-notification');
+        if (cartNotificationContainer.classList.contains('cart-notification-expanded')) {
+            cartNotificationContainer.classList.remove('cart-notification-expanded');
+        }
+    });
+}
+
+if (!loggedInAccount.cart) {
+    loggedInAccount.cart = {
+        items: []
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     insertElement("homeHeader", userPagesHeader)
 
@@ -72,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let logoutButton = document.querySelector('#logOut');
     if (logoutButton) {
         logoutButton.addEventListener('click', function () {
+            localStorage.removeItem('loggedInEmail')
             localStorage.removeItem('userName');
             window.location = 'index.html';
         });
@@ -81,10 +123,15 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('click', (event) => {
     let cartNotificationContainer = document.querySelector('.cart-notification');
     let productCard = event.target.closest('.product-card');
+    
+    // Add to Cart Button
     if (event.target.matches('.add-cart-btn')) {
         let productName = productCard.querySelector('h4').innerText;
         let productImg = productCard.querySelector('.product-img').src;
         let productVersion = productCard.querySelector('.select-styles').value;
+        let productPrice = parseFloat(productCard.querySelector('.price').textContent.replace('$', ''));
+
+        // Cart Notification
         if (cartNotificationContainer.classList.contains('cart-notification-expanded')) {
             cartNotificationContainer.classList.remove('cart-notification-expanded');
             setTimeout(() => {
@@ -104,9 +151,10 @@ document.addEventListener('click', (event) => {
                         </div>
                         <div class="cart-notification-footer">
                             <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
-                            <button class="btn new-btn-transparent w-100">Continue shopping</button>
+                            <button class="btn new-btn-transparent w-100" id="continueShopping">Continue shopping</button>
                         </div>
                     </div>`;
+                continueShopping()
             }, 100)
         }
         else {
@@ -126,10 +174,15 @@ document.addEventListener('click', (event) => {
                         </div>
                         <div class="cart-notification-footer">
                             <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
-                            <button class="btn new-btn-transparent w-100">Continue shopping</button>
+                            <button class="btn new-btn-transparent w-100" id="continueShopping">Continue shopping</button>
                         </div>
                     </div>`;
+            continueShopping()
         }
+
+        let cartItem = createCartItem(productImg, productName, productVersion, productPrice, 1);
+        addItemToCart(cartItem);
+        console.log(cartItem)
     }
     else if (!cartNotificationContainer.contains(event.target)
         && cartNotificationContainer.classList.contains('cart-notification-expanded')) {
