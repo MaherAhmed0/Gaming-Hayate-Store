@@ -778,9 +778,98 @@
 }
 
 /* ------------------------------ Cart Page Section ------------------------------ */
-#cartContainer .empty-cart-page img {
+#probEmpty .empty-img {
     max-width: 70px;
     margin-bottom: 0.75rem;
+}
+
+#cartContainer .cart-page-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(148deg, rgba(1, 152, 255, .18) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: all ease-in-out .5s;
+    border-radius: 0 12px;
+}
+
+#cartContainer .cart-page-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 0 12px;
+    border: 1px solid transparent;
+    background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
+    mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
+    mask-composite: exclude;
+}
+
+.cart-page-item-img {
+    max-width: 95px;
+}
+
+.cart-page-item-details {
+    width: 100%;
+    padding-left: 1rem;
+}
+
+.cart-page-item-details h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.cart-page-item-details>p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.quantity-controler button {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    flex: 1;
+    color: var(--theme-color);
+    z-index: 10;
+}
+
+.cart-page-item-details .foot p {
+    font-size: 14px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.cart-page-item-details .foot button {
+    border: 0;
+    background-color: transparent;
+    font-size: 15px;
+    z-index: 10;
+}
+
+.cart-page-total-cont {
+    padding: 30px 15px;
+    border-radius: 0 20px;
+    border: 1px solid #dee2e6;
+    height: 100%;
+}
+
+.cart-page-total {
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* ------------------------------ Cart Notification ------------------------------ */

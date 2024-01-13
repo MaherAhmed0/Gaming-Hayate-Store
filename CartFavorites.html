@@ -48,13 +48,25 @@
     <!-- Cart and Favorites -->
     <section class="py-5 bg-white" id="cartSection">
         <div class="container">
-            <h2 class="text-black pb-2 border-bottom">Cart</h2>
-            <div class="row g-3 mb-4 p-3" id="cartContainer">
-
+            <div class="mb-4">
+                <h2 class="text-black pb-2 mb-3 border-bottom">Cart</h2>
+                <div class="row g-3" id="probEmpty">
+                    <div class="col-lg-10 col-12">
+                        <div class="row g-3" id="cartContainer">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <div class="d-flex flex-column align-items-center justify-content-center cart-page-total-cont">
+                            <h4 class="fw-bold">Total Price</h4>
+                            <p class="cart-page-total mb-0"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h2 class="text-black pb-2 border-bottom">Favorites</h2>
-            <div class="row g-4 p-3" id="favorites">
-
+            <div>
+                <h2 class="text-black pb-2 border-bottom">Favorites</h2>
+                <div class="row g-4 p-3" id="favoritesContainer">
+                </div>
             </div>
         </div>
     </section>

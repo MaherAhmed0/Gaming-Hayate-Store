@@ -89,26 +89,82 @@ let continueShopping = () => {
     });
 }
 
+let addMinusDeleteBtns = (minusSelector, addSelector, delSelector) => {
+    document.querySelectorAll(minusSelector).forEach(btn => {
+        btn.addEventListener('click', function () {
+            let index = this.getAttribute('data-index');
+            let item = loggedInAccount.cart.items[index];
+            if (item.quantity > 1) {
+                item.quantity--;
+                item.totalPrice -= item.price;
+            } else {
+                loggedInAccount.cart.items.splice(index, 1);
+            }
+            updateAPP()
+        });
+    });
+    document.querySelectorAll(addSelector).forEach(btn => {
+        btn.addEventListener('click', function () {
+            let index = this.getAttribute('data-index');
+            let item = loggedInAccount.cart.items[index];
+            item.quantity++;
+            item.totalPrice += item.price;
+            updateAPP()
+        });
+    });
+    document.querySelectorAll(delSelector).forEach(btn => {
+        btn.addEventListener('click', function () {
+            let index = this.getAttribute('data-index');
+            loggedInAccount.cart.items.splice(index, 1);
+            updateAPP()
+        });
+    });
+}
+
 let updateLocalStorage = () => {
     localStorage.setItem("accounts", JSON.stringify(accounts));
 }
 
 let updateCartPage = () => {
     let cartContainer = document.querySelector('#cartContainer')
-    cartContainer.innerHTML = '';
-    if (loggedInAccount.cart.items.length > 0) {
-        loggedInAccount.cart.items.forEach((item, index) => {
-            let cartPageItem = `
-                `;
-            cartContainer.appendChild(cartPageItem)
-        });
-    }
-    else {
-        cartContainer.innerHTML = `
-            <div class="d-flex flex-column justify-content-center align-items-center empty-cart-page">
-                <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid"/>
+    let emptyCart = document.querySelector('#probEmpty');
+    if (cartContainer) {
+        cartContainer.innerHTML = '';
+        if (loggedInAccount.cart.items.length > 0) {
+            loggedInAccount.cart.items.forEach((item, index) => {
+                let cartPageItem = `
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="cart-page-item">
+                        <div class="cart-page-item-img">
+                            <img src="${item.productImg}" alt="${item.productName}" class="img-fluid"/>
+                        </div>
+                        <div class="cart-page-item-details">
+                            <h4>${item.productName}</h4>
+                            <p>Version: ${item.version}</p>
+                            <div class="quantity-controler">
+                                <button class="d-block minus-btn" data-index="${index}"><i class="fa-solid fa-minus"></i></button>
+                                <p>${item.quantity}</p>
+                                <button class="d-block plus-btn" data-index="${index}"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center foot">
+                                <p>Price: ${item.totalPrice} $</p>
+                                <button class="d-block delete-btn" data-index="${index}"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                cartContainer.innerHTML += cartPageItem
+            });
+            // Cart page items buttons
+            addMinusDeleteBtns('.minus-btn', '.plus-btn', '.delete-btn')
+        }
+        else {
+            emptyCart.innerHTML = `
+            <div class="d-flex flex-column justify-content-center align-items-center pt-3 empty-cart-page">
+                <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid empty-img"/>
                 <h6 class="text-center">Your Cart is Empty</h6>
             </div>`;
+        }
     }
 }
 
@@ -138,37 +194,8 @@ let updateCartMenu = () => {
                 </div>`;
             cartItems.innerHTML += itemHTML;
         });
-
         // Cart menu items buttons
-        document.querySelectorAll('.minus-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let index = this.getAttribute('data-index');
-                let item = loggedInAccount.cart.items[index];
-                if (item.quantity > 1) {
-                    item.quantity--;
-                    item.totalPrice -= item.price;
-                } else {
-                    loggedInAccount.cart.items.splice(index, 1);
-                }
-                updateAPP()
-            });
-        });
-        document.querySelectorAll('.plus-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let index = this.getAttribute('data-index');
-                let item = loggedInAccount.cart.items[index];
-                item.quantity++;
-                item.totalPrice += item.price;
-                updateAPP()
-            });
-        });
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                let index = this.getAttribute('data-index');
-                loggedInAccount.cart.items.splice(index, 1);
-                updateAPP()
-            });
-        });
+        addMinusDeleteBtns('.minus-btn', '.plus-btn', '.delete-btn')
     }
     else {
         cartItems.innerHTML = `
@@ -188,17 +215,21 @@ let updateItemsCount = () => {
 let updateTotalPrice = () => {
     let totalPriceHeaderElement = document.querySelector('.cart-lable b');
     let totalPriceMenuElement = document.querySelector('#total');
+    let totalPriceCartPageElement = document.querySelector('.cart-page-total');
     let totalPrice = loggedInAccount.cart.items.reduce((total, item) => total + item.totalPrice, 0);
     totalPriceHeaderElement.textContent = totalPrice.toFixed(2) + ' $';
     totalPriceMenuElement.textContent = totalPrice.toFixed(2) + ' $';
+    if (totalPriceCartPageElement) {
+        totalPriceCartPageElement.textContent = totalPrice.toFixed(2) + ' $';
+    }
 }
 
 let updateAPP = () => {
     updateLocalStorage();
     updateCartMenu();
+    updateCartPage();
     updateItemsCount();
     updateTotalPrice();
-    updateCartPage();
 }
 
 if (!loggedInAccount.cart) {
