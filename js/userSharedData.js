@@ -70,8 +70,17 @@ let addItemToCart = (item) => {
 }
 
 let addItem = (cart, item) => {
-    cart.items.push(item);
-    localStorage.setItem("accounts", JSON.stringify(accounts));
+    let existingItem = cart.items.find(i => i.productName === item.productName && i.version === item.version);
+    if (existingItem) {
+        existingItem.quantity += item.quantity;
+        existingItem.totalPrice += item.totalPrice;
+    } else {
+        cart.items.push(item);
+    }
+    updateLocalStorage();
+    updateCartMenu();
+    updateItemsCount();
+    updateTotalPrice();
 }
 
 let continueShopping = () => {
@@ -81,6 +90,100 @@ let continueShopping = () => {
             cartNotificationContainer.classList.remove('cart-notification-expanded');
         }
     });
+}
+
+let updateLocalStorage = () => {
+    localStorage.setItem("accounts", JSON.stringify(accounts));
+}
+
+let updateCartMenu = () => {
+    let cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+    if (loggedInAccount.cart.items.length > 0) {
+        loggedInAccount.cart.items.forEach((item, index) => {
+            let itemHTML = `
+                <div class="cart-menu-item">
+                    <div class="cart-menu-item-img">
+                        <img src="${item.productImg}" alt="${item.productName}" class="img-fluid"/>
+                    </div>
+                    <div class="cart-menu-item-details ps-3">
+                        <h4>${item.productName}</h4>
+                        <p>Version: ${item.version}</p>
+                        <div class="quantity-controler">
+                            <button class="d-block minus-btn" data-index="${index}"><i class="fa-solid fa-minus"></i></button>
+                            <p>${item.quantity}</p>
+                            <button class="d-block plus-btn" data-index="${index}"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center foot">
+                            <p>Price: ${item.totalPrice} $</p>
+                            <button class="d-block delete-btn" data-index="${index}"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                </div>`;
+            cartItems.innerHTML += itemHTML;
+        });
+
+        // Cart menu items buttons
+        document.querySelectorAll('.minus-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                let index = this.getAttribute('data-index');
+                let item = loggedInAccount.cart.items[index];
+                if (item.quantity > 1) {
+                    item.quantity--;
+                    item.totalPrice -= item.price;
+                } else {
+                    loggedInAccount.cart.items.splice(index, 1);
+                }
+                updateLocalStorage();
+                updateCartMenu();
+                updateItemsCount();
+                updateTotalPrice();
+            });
+        });
+        document.querySelectorAll('.plus-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                let index = this.getAttribute('data-index');
+                let item = loggedInAccount.cart.items[index];
+                item.quantity++;
+                item.totalPrice += item.price;
+                updateLocalStorage();
+                updateCartMenu();
+                updateItemsCount();
+                updateTotalPrice();
+            });
+        });
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                let index = this.getAttribute('data-index');
+                loggedInAccount.cart.items.splice(index, 1);
+                updateLocalStorage();
+                updateCartMenu();
+                updateItemsCount();
+                updateTotalPrice();
+            });
+        });
+    }
+    else {
+        cartItems.innerHTML = `
+            <div class="d-flex flex-column justify-content-center align-items-center empty-cart">
+                <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid"/>
+                <h4 class="text-center">Your Cart is Empty</h4>
+            </div>`;
+    }
+}
+
+let updateItemsCount = () => {
+    let itemsCount = document.querySelector('.items-count');
+    let totalItems = loggedInAccount.cart.items.reduce((total, item) => total + item.quantity, 0);
+    itemsCount.textContent = totalItems;
+}
+
+let updateTotalPrice = () => {
+    let totalPriceHeaderElement = document.querySelector('.cart-lable b');
+    let totalPriceMenuElement = document.querySelector('#total');
+    let totalPrice = loggedInAccount.cart.items.reduce((total, item) => total + item.totalPrice, 0);
+    totalPriceHeaderElement.textContent = totalPrice.toFixed(2) + ' $';
+    totalPriceMenuElement.textContent = totalPrice.toFixed(2) + ' $';
 }
 
 if (!loggedInAccount.cart) {
@@ -94,16 +197,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     insertElement("storeHeader", userPagesHeader)
 
-    let cartItems = document.getElementById('cartItems')
-    if (cartItems.children.length > 0) {
-        console.log("Cart is not empty");
-    } else {
-        cartItems.innerHTML = `
-        <div class="d-flex flex-column justify-content-center align-items-center empty-cart">
-            <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid"/>
-            <h4 class="text-center">Your Cart is Empty</h4>
-        </div>`
-    }
+    updateLocalStorage();
+    updateCartMenu();
+    updateItemsCount();
+    updateTotalPrice();
 
     const loggedInUser = localStorage.getItem("userName");
     if (loggedInUser) {
@@ -123,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('click', (event) => {
     let cartNotificationContainer = document.querySelector('.cart-notification');
     let productCard = event.target.closest('.product-card');
-    
+
     // Add to Cart Button
     if (event.target.matches('.add-cart-btn')) {
         let productName = productCard.querySelector('h4').innerText;
@@ -182,7 +279,6 @@ document.addEventListener('click', (event) => {
 
         let cartItem = createCartItem(productImg, productName, productVersion, productPrice, 1);
         addItemToCart(cartItem);
-        console.log(cartItem)
     }
     else if (!cartNotificationContainer.contains(event.target)
         && cartNotificationContainer.classList.contains('cart-notification-expanded')) {
