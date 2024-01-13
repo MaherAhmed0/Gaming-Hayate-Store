@@ -41,7 +41,7 @@ let userPagesHeader = `
                                         <h4>Total:</h4>
                                         <h4 id="total"><span>$</span></h4>
                                     </div>
-                                    <a href="" class="btn new-btn mt-3 mb-2 px-5">View Cart <i
+                                    <a href="CartFavorites.html" class="btn new-btn mt-3 mb-2 px-5">View Cart <i
                                             class="fa-solid fa-arrow-right-long ms-2"></i></a>
                                 </div>
                             </div>
@@ -77,10 +77,7 @@ let addItem = (cart, item) => {
     } else {
         cart.items.push(item);
     }
-    updateLocalStorage();
-    updateCartMenu();
-    updateItemsCount();
-    updateTotalPrice();
+    updateAPP()
 }
 
 let continueShopping = () => {
@@ -94,6 +91,25 @@ let continueShopping = () => {
 
 let updateLocalStorage = () => {
     localStorage.setItem("accounts", JSON.stringify(accounts));
+}
+
+let updateCartPage = () => {
+    let cartContainer = document.querySelector('#cartContainer')
+    cartContainer.innerHTML = '';
+    if (loggedInAccount.cart.items.length > 0) {
+        loggedInAccount.cart.items.forEach((item, index) => {
+            let cartPageItem = `
+                `;
+            cartContainer.appendChild(cartPageItem)
+        });
+    }
+    else {
+        cartContainer.innerHTML = `
+            <div class="d-flex flex-column justify-content-center align-items-center empty-cart-page">
+                <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid"/>
+                <h6 class="text-center">Your Cart is Empty</h6>
+            </div>`;
+    }
 }
 
 let updateCartMenu = () => {
@@ -134,10 +150,7 @@ let updateCartMenu = () => {
                 } else {
                     loggedInAccount.cart.items.splice(index, 1);
                 }
-                updateLocalStorage();
-                updateCartMenu();
-                updateItemsCount();
-                updateTotalPrice();
+                updateAPP()
             });
         });
         document.querySelectorAll('.plus-btn').forEach(btn => {
@@ -146,20 +159,14 @@ let updateCartMenu = () => {
                 let item = loggedInAccount.cart.items[index];
                 item.quantity++;
                 item.totalPrice += item.price;
-                updateLocalStorage();
-                updateCartMenu();
-                updateItemsCount();
-                updateTotalPrice();
+                updateAPP()
             });
         });
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 let index = this.getAttribute('data-index');
                 loggedInAccount.cart.items.splice(index, 1);
-                updateLocalStorage();
-                updateCartMenu();
-                updateItemsCount();
-                updateTotalPrice();
+                updateAPP()
             });
         });
     }
@@ -186,6 +193,14 @@ let updateTotalPrice = () => {
     totalPriceMenuElement.textContent = totalPrice.toFixed(2) + ' $';
 }
 
+let updateAPP = () => {
+    updateLocalStorage();
+    updateCartMenu();
+    updateItemsCount();
+    updateTotalPrice();
+    updateCartPage();
+}
+
 if (!loggedInAccount.cart) {
     loggedInAccount.cart = {
         items: []
@@ -197,10 +212,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     insertElement("storeHeader", userPagesHeader)
 
-    updateLocalStorage();
-    updateCartMenu();
-    updateItemsCount();
-    updateTotalPrice();
+    insertElement("cartHeader", userPagesHeader)
+
+    updateAPP()
 
     const loggedInUser = localStorage.getItem("userName");
     if (loggedInUser) {
@@ -247,7 +261,7 @@ document.addEventListener('click', (event) => {
                             </div>
                         </div>
                         <div class="cart-notification-footer">
-                            <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
+                            <a href="CartFavorites.html" class="btn new-btn w-100 mb-2">View my cart</a>
                             <button class="btn new-btn-transparent w-100" id="continueShopping">Continue shopping</button>
                         </div>
                     </div>`;
@@ -270,7 +284,7 @@ document.addEventListener('click', (event) => {
                             </div>
                         </div>
                         <div class="cart-notification-footer">
-                            <a href="" class="btn new-btn w-100 mb-2">View my cart</a>
+                            <a href="CartFavorites.html" class="btn new-btn w-100 mb-2">View my cart</a>
                             <button class="btn new-btn-transparent w-100" id="continueShopping">Continue shopping</button>
                         </div>
                     </div>`;

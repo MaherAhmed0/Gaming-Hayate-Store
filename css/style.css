@@ -769,6 +769,20 @@
     height: 42px;
 }
 
+/* ------------------------------ Cart Page Main ------------------------------ */
+#cartMain .section-title {
+    background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 75%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+/* ------------------------------ Cart Page Section ------------------------------ */
+#cartContainer .empty-cart-page img {
+    max-width: 70px;
+    margin-bottom: 0.75rem;
+}
+
 /* ------------------------------ Cart Notification ------------------------------ */
 .cart-notification {
     position: fixed;

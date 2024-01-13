@@ -227,4 +227,6 @@ document.addEventListener('DOMContentLoaded', function () {
     insertElement("homeFooter", footerComponent);
 
     insertElement("storeFooter", footerComponent);
+
+    insertElement("cart-Footer", footerComponent);
 })
