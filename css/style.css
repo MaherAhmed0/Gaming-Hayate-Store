@@ -512,19 +512,21 @@
     opacity: 1;
 }
 
+@media (max-width: 768px) {
+    .like-btn-cont {
+        opacity: 1;
+    }
+}
+
 .like-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     color: white;
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
     border-radius: 0 10px;
     padding: 10px 15px;
-    cursor: pointer;
 }
 
-.like-btn:hover {
+.like-btn.favorited {
     color: red;
 }
 

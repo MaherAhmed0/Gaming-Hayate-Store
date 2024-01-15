@@ -12,8 +12,8 @@ let displayProducts = (data) => {
             productCard.innerHTML = `
                 <div class="product-card position-relative">
                     <div class="d-flex justify-content-center align-items-center like-btn-cont z-3">
-                        <button class="like-btn btn">
-                            <i class="fa-regular fa-heart"></i>
+                        <button class="like-btn">
+                            <i class="fa-solid fa-heart"></i>
                         </button>
                     </div>
                     <h4>${item.name}</h4>

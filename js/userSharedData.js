@@ -121,6 +121,33 @@ let addMinusDeleteBtns = (minusSelector, addSelector, delSelector) => {
     });
 }
 
+let createFavoritesItem = (productImg, productName, version, productCategory) => {
+    return {
+        productImg,
+        productName,
+        version,
+        productCategory
+    };
+}
+
+let addItemToFavorites = (item) => {
+    let favoritestItem = createFavoritesItem(item.productImg, item.productName, item.version, item.productCategory);
+    return addFavoritesItem(loggedInAccount.favorites, favoritestItem);
+}
+
+let addFavoritesItem = (favorites, item) => {
+    let existingItemIndex = favorites.items.findIndex(i => i.productName === item.productName && i.version === item.version);
+    if (existingItemIndex !== -1) {
+        favorites.items.splice(existingItemIndex, 1);
+        updateLocalStorage();
+        return false;
+    } else {
+        favorites.items.push(item);
+        updateLocalStorage();
+        return true;
+    }
+}
+
 let updateLocalStorage = () => {
     localStorage.setItem("accounts", JSON.stringify(accounts));
 }
@@ -238,6 +265,12 @@ if (!loggedInAccount.cart) {
     };
 }
 
+if (!loggedInAccount.favorites) {
+    loggedInAccount.favorites = {
+        items: []
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     insertElement("homeHeader", userPagesHeader)
 
@@ -328,5 +361,21 @@ document.addEventListener('click', (event) => {
     else if (!cartNotificationContainer.contains(event.target)
         && cartNotificationContainer.classList.contains('cart-notification-expanded')) {
         cartNotificationContainer.classList.remove('cart-notification-expanded');
+    }
+    else if (event.target.matches('.like-btn, .like-btn i')) {
+        let productName = productCard.querySelector('h4').innerText;
+        let productImg = productCard.querySelector('.product-img').src;
+        let productVersion = productCard.querySelector('.select-styles').value;
+        let productCategory = productCard.querySelector('.product-category span').innerHTML;
+
+        let favoritesItem = createFavoritesItem(productImg, productName, productVersion, productCategory);
+        let itemAdded = addItemToFavorites(favoritesItem);
+
+        let likeBtn = event.target.closest('.like-btn');
+        if (itemAdded) {
+            likeBtn.classList.add('favorited');
+        } else {
+            likeBtn.classList.remove('favorited');
+        }
     }
 });

@@ -146,8 +146,8 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
                 productCard.innerHTML = `
                     <div class="product-card position-relative">
                         <div class="d-flex justify-content-center align-items-center like-btn-cont z-3">
-                            <button class="like-btn btn">
-                                <i class="fa-regular fa-heart"></i>
+                            <button class="like-btn">
+                                <i class="fa-solid fa-heart"></i>
                             </button>
                         </div>
                         <h4>${bestSeller.name}</h4>
