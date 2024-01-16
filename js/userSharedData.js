@@ -64,9 +64,23 @@ let createCartItem = (productImg, productName, version, price, quantity) => {
     };
 }
 
+let createFavoritesItem = (productImg, productName, version, productCategory) => {
+    return {
+        productImg,
+        productName,
+        version,
+        productCategory
+    };
+}
+
 let addItemToCart = (item) => {
     let cartItem = createCartItem(item.productImg, item.productName, item.version, item.price, item.quantity);
     addItem(loggedInAccount.cart, cartItem);
+}
+
+let addItemToFavorites = (item) => {
+    let favoritestItem = createFavoritesItem(item.productImg, item.productName, item.version, item.productCategory);
+    return addFavoritesItem(loggedInAccount.favorites, favoritestItem);
 }
 
 let addItem = (cart, item) => {
@@ -80,13 +94,17 @@ let addItem = (cart, item) => {
     updateAPP()
 }
 
-let continueShopping = () => {
-    document.querySelector('#continueShopping').addEventListener('click', () => {
-        let cartNotificationContainer = document.querySelector('.cart-notification');
-        if (cartNotificationContainer.classList.contains('cart-notification-expanded')) {
-            cartNotificationContainer.classList.remove('cart-notification-expanded');
-        }
-    });
+let addFavoritesItem = (favorites, item) => {
+    let existingItemIndex = favorites.items.findIndex(i => i.productName === item.productName && i.version === item.version);
+    if (existingItemIndex !== -1) {
+        favorites.items.splice(existingItemIndex, 1);
+        updateLocalStorage();
+        return false;
+    } else {
+        favorites.items.push(item);
+        updateLocalStorage();
+        return true;
+    }
 }
 
 let addMinusDeleteBtns = (minusSelector, addSelector, delSelector) => {
@@ -116,36 +134,28 @@ let addMinusDeleteBtns = (minusSelector, addSelector, delSelector) => {
         btn.addEventListener('click', function () {
             let index = this.getAttribute('data-index');
             loggedInAccount.cart.items.splice(index, 1);
-            updateAPP()
+            updateAPP();
         });
     });
 }
 
-let createFavoritesItem = (productImg, productName, version, productCategory) => {
-    return {
-        productImg,
-        productName,
-        version,
-        productCategory
-    };
+let deleteFavoritesItem = (delSelector) => {
+    document.querySelectorAll(delSelector).forEach((btn) => {
+        btn.addEventListener('click', function () {
+            let index = this.getAttribute('data-index');
+            loggedInAccount.favorites.items.splice(index, 1);
+            updateAPP();
+        });
+    })
 }
 
-let addItemToFavorites = (item) => {
-    let favoritestItem = createFavoritesItem(item.productImg, item.productName, item.version, item.productCategory);
-    return addFavoritesItem(loggedInAccount.favorites, favoritestItem);
-}
-
-let addFavoritesItem = (favorites, item) => {
-    let existingItemIndex = favorites.items.findIndex(i => i.productName === item.productName && i.version === item.version);
-    if (existingItemIndex !== -1) {
-        favorites.items.splice(existingItemIndex, 1);
-        updateLocalStorage();
-        return false;
-    } else {
-        favorites.items.push(item);
-        updateLocalStorage();
-        return true;
-    }
+let continueShopping = () => {
+    document.querySelector('#continueShopping').addEventListener('click', () => {
+        let cartNotificationContainer = document.querySelector('.cart-notification');
+        if (cartNotificationContainer.classList.contains('cart-notification-expanded')) {
+            cartNotificationContainer.classList.remove('cart-notification-expanded');
+        }
+    });
 }
 
 let updateLocalStorage = () => {
@@ -187,13 +197,64 @@ let updateCartPage = () => {
         }
         else {
             emptyCart.innerHTML = `
-            <div class="d-flex flex-column justify-content-center align-items-center pt-3 empty-cart-page">
-                <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid empty-img"/>
-                <h6 class="text-center">Your Cart is Empty</h6>
-            </div>`;
+                <div class="d-flex flex-column justify-content-center align-items-center pt-3 empty-cart-page">
+                    <img src="images/empty-cart.png" alt="Empty Cart" class="img-fluid empty-img"/>
+                    <h6 class="text-center">Your Cart is Empty</h6>
+                </div>`;
         }
     }
 }
+
+let updateFavoritesPage = () => {
+    let favoritesContainer = document.querySelector('#favoritesContainer');
+    let dotsContainer = document.querySelector('.dots-container');
+    if (favoritesContainer && dotsContainer) {
+        favoritesContainer.innerHTML = '';
+        dotsContainer.innerHTML = '';
+        if (loggedInAccount.favorites.items.length > 0) {
+            loggedInAccount.favorites.items.forEach((item, index) => {
+                let likedItem = `
+                    <div class="favorites-page-item">
+                        <div class="favorites-page-item-img">
+                            <img src="${item.productImg}" alt="${item.productName}" class="img-fluid"/>
+                        </div>
+                        <div class="favorites-page-item-details">
+                            <h4>${item.productName}</h4>
+                            <p>Category: ${item.productCategory}</p>
+                            <div class="d-flex justify-content-between">
+                                <p>Version: ${item.version}</p>
+                                    <button class="remove-btn" data-index="${index}">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>`;
+                favoritesContainer.innerHTML += likedItem;
+            });
+            // Add dots
+            for (let i = 0; i < 4; i++) {
+                dotsContainer.innerHTML += '<div class="dot"></div>';
+            }
+            // Scroll event
+            favoritesContainer.addEventListener('scroll', () => {
+                let scrollWidth = favoritesContainer.scrollWidth - favoritesContainer.clientWidth;
+                let scrollPercent = favoritesContainer.scrollLeft / scrollWidth;
+                let activeDot = Math.round(scrollPercent * 3);
+                let dots = Array.from(dotsContainer.querySelectorAll('.dot'));
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === activeDot));
+            });
+            deleteFavoritesItem('.remove-btn')
+        }
+        else {
+            favoritesContainer.innerHTML = `
+                <div class="d-flex flex-column justify-content-center align-items-center pt-3 empty-favorites-page">
+                    <img src="images/no-favorites.png" alt="No Favorites" class="img-fluid empty-img"/>
+                    <h6 class="text-center">No Favorites Yet</h6>
+                </div>`;
+        }
+    }
+}
+
 
 let updateCartMenu = () => {
     let cartItems = document.getElementById('cartItems');
@@ -253,6 +314,7 @@ let updateTotalPrice = () => {
 
 let updateAPP = () => {
     updateLocalStorage();
+    updateFavoritesPage()
     updateCartMenu();
     updateCartPage();
     updateItemsCount();

@@ -859,6 +859,7 @@
 }
 
 .cart-page-total-cont {
+    text-align: center;
     padding: 30px 15px;
     border-radius: 0 20px;
     border: 1px solid #dee2e6;
@@ -872,6 +873,108 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* ------------------------------ Favorites Page Section ------------------------------ */
+.empty-favorites-page {
+    position: absolute;
+    bottom: -35%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+}
+
+.scrollable-section {
+    overflow-x: auto;
+    scrollbar-width: none;
+    min-height: 141px;
+}
+
+.scrollable-section::-webkit-scrollbar {
+    display: none;
+}
+
+.dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: lightgray;
+    margin: 0 .25em;
+}
+
+.dot.active {
+    background: var(--blue);
+}
+
+#favoritesContainer .empty-img {
+    max-width: 70px;
+    margin-bottom: 0.75rem
+}
+
+.favorites-page-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(148deg, rgba(1, 152, 255, .18) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: all ease-in-out .5s;
+    border-radius: 0 12px;
+}
+
+.favorites-page-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 0 12px;
+    border: 1px solid transparent;
+    background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
+    mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
+    mask-composite: exclude;
+}
+
+.favorites-page-item-img {
+    width: 220px;
+}
+
+.favorites-page-item-details {
+    width: 100%;
+    padding-left: 0.75rem;
+}
+
+.favorites-page-item-details h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    max-width: 215px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.favorites-page-item-details p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.favorites-page-item-details button {
+    border: 0;
+    background-color: transparent;
+    color: red;
+    font-size: 15px;
+    z-index: 10;
 }
 
 /* ------------------------------ Cart Notification ------------------------------ */
