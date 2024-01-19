@@ -6,12 +6,38 @@ let loggedInAccount = accounts.find(account => account.email === loggedInEmail);
 let userPagesHeader = `
         <nav class="navbar">
             <div class="container py-lg-1 py-sm-1 d-flex justify-content-between align-items-center flex-nowrap">
-                <a class="navbar-brand" href="home.html">
+                <a class="navbar-brand order-lg-1" href="home.html">
                     <img src="images/logo.png" alt="Gaming.">
                 </a>
-                <div class="d-none">
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
+                <ul class="order-lg-0 list-unstyled d-lg-flex gap-4 justify-content-between align-items-center d-none text-white m-0">
+                    <li>
+                        <div class="dropdown" onmouseover="setAriaExpanded('.dropdown-toggle-2', true)" onmouseout="setAriaExpanded('.dropdown-toggle-2', false)">
+                            <a class="dropdown-toggle dropdown-toggle-2 text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages <i class="fa-solid fa-angle-down ms-1 align-text-bottom"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="home.html">Home</a></li>
+                                <li><a class="dropdown-item" href="store.html">Store</a></li>
+                                <li><a class="dropdown-item" href="CartFavorites.html">Cart & Favorites</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown" onmouseover="setAriaExpanded('.dropdown-toggle-1', true)" onmouseout="setAriaExpanded('.dropdown-toggle-1', false)">
+                            <a class="dropdown-toggle dropdown-toggle-1 text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gaming Accessories <i class="fa-solid fa-angle-down ms-1 align-text-bottom"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="store.html">Monitor</a></li>
+                                <li><a class="dropdown-item" href="store.html">Chair</a></li>
+                                <li><a class="dropdown-item" href="store.html">Headset</a></li>
+                                <li><a class="dropdown-item" href="store.html">Game PCs</a></li>
+                                <li><a class="dropdown-item" href="store.html">Card</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="order-lg-2 d-flex justify-content-between align-items-center">
                     <div class="me-4">
                         <button class="d-flex justify-content-between align-items-center gap-1 header-cart"
                             type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
@@ -47,11 +73,15 @@ let userPagesHeader = `
                             </div>
                         </div>
                     </div>
-                    <p id="welcomeUser" class="d-none d-sm-block text-white me-3">Welcome, User!</p>
+                    <p id="welcomeUser" class="d-none d-sm-block text-white me-3 ms-1">Welcome, User!</p>
                     <button class="btn new-btn-transparent d-block" id="logOut">Logout</button>
                 </div>
             </div>
         </nav>`
+
+let setAriaExpanded = (linkSelector, value) => {
+    document.querySelector(linkSelector).setAttribute('aria-expanded', value);
+}
 
 let createCartItem = (productImg, productName, version, price, quantity) => {
     return {
@@ -179,13 +209,13 @@ let updateCartPage = () => {
                             <h4>${item.productName}</h4>
                             <p>Version: ${item.version}</p>
                             <div class="quantity-controler">
-                                <button class="d-block minus-btn" data-index="${index}"><i class="fa-solid fa-minus"></i></button>
+                                <button class="d-block minus-btn" aria-label="minus" data-index="${index}"><i class="fa-solid fa-minus"></i></button>
                                 <p>${item.quantity}</p>
-                                <button class="d-block plus-btn" data-index="${index}"><i class="fa-solid fa-plus"></i></button>
+                                <button class="d-block plus-btn" aria-label="plus" data-index="${index}"><i class="fa-solid fa-plus"></i></button>
                             </div>
                             <div class="d-flex justify-content-between align-items-center foot">
                                 <p>Price: ${item.totalPrice} $</p>
-                                <button class="d-block delete-btn" data-index="${index}"><i class="fa-regular fa-trash-can"></i></button>
+                                <button class="d-block delete-btn" aria-label="delete" data-index="${index}"><i class="fa-regular fa-trash-can"></i></button>
                             </div>
                         </div>
                     </div>
@@ -223,7 +253,7 @@ let updateFavoritesPage = () => {
                             <p>Category: ${item.productCategory}</p>
                             <div class="d-flex justify-content-between">
                                 <p>Version: ${item.version}</p>
-                                    <button class="remove-btn" data-index="${index}">
+                                    <button class="remove-btn" aria-label="remove" data-index="${index}">
                                         <i class="fa-solid fa-heart"></i>
                                     </button>
                                 </div>
@@ -254,7 +284,6 @@ let updateFavoritesPage = () => {
         }
     }
 }
-
 
 let updateCartMenu = () => {
     let cartItems = document.getElementById('cartItems');
@@ -345,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loggedInUser = localStorage.getItem("userName");
     if (loggedInUser) {
         const welcomeMessage = document.getElementById('welcomeUser');
-        welcomeMessage.textContent = `Welcome, ${loggedInUser}`;
+        welcomeMessage.innerHTML = `Welcome, <p class="m-0">${loggedInUser}</p>`;
     }
     let logoutButton = document.querySelector('#logOut');
     if (logoutButton) {
@@ -420,10 +449,12 @@ document.addEventListener('click', (event) => {
         let cartItem = createCartItem(productImg, productName, productVersion, productPrice, 1);
         addItemToCart(cartItem);
     }
+    // Close Cart Notification
     else if (!cartNotificationContainer.contains(event.target)
         && cartNotificationContainer.classList.contains('cart-notification-expanded')) {
         cartNotificationContainer.classList.remove('cart-notification-expanded');
     }
+    // Add to Favorites Button
     else if (event.target.matches('.like-btn, .like-btn i')) {
         let productName = productCard.querySelector('h4').innerText;
         let productImg = productCard.querySelector('.product-img').src;

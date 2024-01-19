@@ -12,7 +12,7 @@ let displayProducts = (data) => {
             productCard.innerHTML = `
                 <div class="product-card position-relative">
                     <div class="d-flex justify-content-center align-items-center like-btn-cont z-3">
-                        <button class="like-btn">
+                        <button class="like-btn" aria-label="add to favorites">
                             <i class="fa-solid fa-heart"></i>
                         </button>
                     </div>
@@ -26,7 +26,7 @@ let displayProducts = (data) => {
                         ${item.versions[0].size ? 'Size:' : ''}
                         ${item.versions[0].color ? 'Color:' : ''}
                     </p>
-                    <select class="select-styles sss">
+                    <select class="select-styles sss" aria-label="select version">
                         ${item.versions.map(version => `
                             <option value="${version.size || version.color}">
                                 ${version.size || version.color}

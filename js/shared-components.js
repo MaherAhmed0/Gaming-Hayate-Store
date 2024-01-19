@@ -76,7 +76,7 @@ let newsletterComponent = `
                     <p>Almost three-quarters of dedicated PC gamers say their main motivation to upgrade is improving
                         gaming experiences.</p>
                     <div class="position-relative mt-4">
-                        <input type="email" placeholder="Enter email address..." class="news-input">
+                        <input type="email" name="email" id="newsEmail" placeholder="Enter email address..." class="news-input">
                         <button class="news-btn position-absolute top-0 end-0">Subscribe</button>
                     </div>
                 </div>
@@ -117,10 +117,22 @@ let footerComponent = `
                 <div class="col-lg-3 col-md-6 col-12 ps-lg-5">
                     <h4>SHARE:</h4>
                     <ul class="list-unstyled social-icons d-flex flex-row">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://github.com/MaherAhmed0" target="_blank" aria-label="share account">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://github.com/MaherAhmed0" target="_blank" aria-label="share account">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://github.com/MaherAhmed0" target="_blank" aria-label="share account">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://github.com/MaherAhmed0" target="_blank" aria-label="share account">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -146,7 +158,7 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
                 productCard.innerHTML = `
                     <div class="product-card position-relative">
                         <div class="d-flex justify-content-center align-items-center like-btn-cont z-3">
-                            <button class="like-btn">
+                            <button class="like-btn" aria-label="add to favorites">
                                 <i class="fa-solid fa-heart"></i>
                             </button>
                         </div>
@@ -160,7 +172,7 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
                             ${bestSeller.versions[0].size ? 'Size:' : ''}
                             ${bestSeller.versions[0].color ? 'Color:' : ''}
                         </p>
-                        <select class="select-styles">
+                        <select class="select-styles" name="bestSelect" aria-label="select version">
                             ${bestSeller.versions.map(version => `
                                 <option value="${version.size || version.color}">
                                     ${version.size || version.color}
@@ -201,6 +213,15 @@ if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
         });
 }
 
+const pageComponents = {
+    index: ["Header", "Main", "About", "Newsletter", "Footer"],
+    login: ["Header", "Footer"],
+    register: ["Header", "Footer"],
+    home: ["Main", "About", "Newsletter", "Footer"],
+    store: ["Footer"],
+    cart: ["Footer"]
+};
+
 let insertElement = (componentId, component) => {
     let Element = document.getElementById(componentId);
     if (Element) {
@@ -209,24 +230,10 @@ let insertElement = (componentId, component) => {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    insertElement("indexHeader", headerComponent);
-    insertElement("indexMain", mainComponent);
-    insertElement("indexAbout", aboutComponent)
-    insertElement("indexNewsletter", newsletterComponent)
-    insertElement("indexFooter", footerComponent);
-
-    insertElement("loginHeader", headerComponent);
-    insertElement("loginFooter", footerComponent);
-
-    insertElement("registerHeader", headerComponent);
-    insertElement("registerFooter", footerComponent);
-
-    insertElement("homeMain", mainComponent)
-    insertElement("homeAbout", aboutComponent)
-    insertElement("homeNewsletter", newsletterComponent)
-    insertElement("homeFooter", footerComponent);
-
-    insertElement("storeFooter", footerComponent);
-
-    insertElement("cart-Footer", footerComponent);
-})
+    for (let page in pageComponents) {
+        pageComponents[page].forEach(component => {
+            let componentId = `${page}${component}`;
+            insertElement(componentId, eval(`${component.toLowerCase()}Component`));
+        });
+    }
+});
