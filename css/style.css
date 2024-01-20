@@ -586,6 +586,8 @@
     background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
+    /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
+    -webkit-mask-composite: xor;
 }
 
 .like-btn-cont {
@@ -898,6 +900,8 @@
     background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
+    /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
+    -webkit-mask-composite: xor;
 }
 
 .cart-page-item-img {
@@ -1031,6 +1035,8 @@
     background: linear-gradient(to left, var(--blue) 50%, var(--second-color)) border-box;
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
+    /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
+    -webkit-mask-composite: xor;
 }
 
 .favorites-page-item-img {
