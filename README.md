@@ -4,7 +4,7 @@
 Gaming-Hayate-Store is a **fully responsive** website for an imaginary gaming accessories brand. It was built to practice front-end skills and includes 6 pages: index (landing page), login, register, user home, store, cart & favorites.
 
 ## Website Link
-You can access the Gaming-Hayate-Store website at: your-website-link
+You can access the Gaming-Hayate-Store website at: https://maherahmed0.github.io/Gaming-Hayate-Store/
 
 ## Features
 - **Responsive Design**: The website is designed to be fully responsive, providing an optimal viewing experience across a wide range of devices.
@@ -18,8 +18,18 @@ You can access the Gaming-Hayate-Store website at: your-website-link
 ## Usage
 After registration, the user is automatically redirected to the login page and then to the user's home page. The website is designed to be intuitive and user-friendly. However, please note that in order to interact with the website (e.g., add items to the cart or favorites), you must first register and log in. Any attempt to perform an action without being logged in will redirect you to the login page.
 
+## Contributing
+Contributions are welcome! Feel free to fork the repository, make your changes, and submit a pull request. You can also submit bug reports or feature requests.
+
+## Contact Information
+For any questions or support, please contact me at: 0maherahmed@gmail.com
+
 ## Data Structure
-The website uses a custom JSON data structure for its products. Here's a sample:
+The website uses a custom JSON data structure for its products.
+
+The `new` field indicates whether a product is new. If it is, a small styled tab will appear on the product card to inform the user. The `bestSellers` field indicates whether a product will appear in the "Best Sellers of the Week" section.
+
+Here's a sample:
 
 ```json
 {
@@ -44,10 +54,3 @@ The website uses a custom JSON data structure for its products. Here's a sample:
         }
     ]
 }
-The new field indicates whether a product is new. If it is, a small styled tab will appear on the product card to inform the user. The bestSellers field indicates whether a product will appear in the “Best Sellers of the Week” section.
-
-## Contributing
-Contributions are welcome! Feel free to fork the repository, make your changes, and submit a pull request. You can also submit bug reports or feature requests.
-
-## Contact Information
-For any questions or support, please contact me at: 0maherahmed@gmail.com
