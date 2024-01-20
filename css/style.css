@@ -587,7 +587,7 @@
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
     /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: exclude;
 }
 
 .like-btn-cont {
@@ -901,7 +901,7 @@
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
     /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: exclude;
 }
 
 .cart-page-item-img {
@@ -1036,7 +1036,7 @@
     mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0);
     mask-composite: exclude;
     /* -webkit-mask: linear-gradient(var(--white) 0 0) padding-box, linear-gradient(var(--white) 0 0); */
-    -webkit-mask-composite: xor;
+    -webkit-mask-composite: exclude;
 }
 
 .favorites-page-item-img {
