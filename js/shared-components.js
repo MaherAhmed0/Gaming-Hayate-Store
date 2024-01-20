@@ -141,7 +141,7 @@ let footerComponent = `
         </div>`
 
 const currentPage = window.location.pathname;
-if (currentPage.includes('index.html') || currentPage.includes('home.html')) {
+if (currentPage.includes('index.html') || currentPage.includes('home.html') || currentPage === '/Gaming-Hayate-Store/') {
     let productsContainer = document.getElementById("bestSellers")
     fetch('products.json')
         .then(response => {
