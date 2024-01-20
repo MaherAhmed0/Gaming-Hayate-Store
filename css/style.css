@@ -206,6 +206,7 @@
     font-size: 14px;
     background: linear-gradient(250deg, var(--blue) 0%, var(--second-color) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
     transition: all .3s;
@@ -371,7 +372,8 @@
     margin-bottom: -1px;
     font-weight: 600;
 }
-#welcomeUser p{
+
+#welcomeUser p {
     margin-top: -1px;
 }
 
@@ -423,6 +425,7 @@
 .large-text b {
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
 }
@@ -531,6 +534,7 @@
 .best-sellers b {
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -836,6 +840,7 @@
 .section-title {
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 30%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
 }
@@ -860,6 +865,7 @@
 #cartMain .section-title {
     background: linear-gradient(75deg, var(--blue) 0%, var(--second-color) 75%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 600;
 }
